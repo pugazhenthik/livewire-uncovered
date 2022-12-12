@@ -12,8 +12,8 @@
         <script src="https://cdn.tailwindcss.com"></script>
         @livewireStyles
     </head>
-    <body class="container mx-auto">
-        <div class="text-center mt-10">
+    <body class="mx-auto">
+        <div class="flex items-center items-center justify-center mt-10">
             <livewire:counter />
         </div>
         @livewireScripts

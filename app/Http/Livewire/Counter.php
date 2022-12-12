@@ -16,16 +16,12 @@ class Counter extends Component
     public function render()
     {
         return <<<'HTML'
-        <div>
-            <button
-                    wire:click="increment"
-                    class="px-4 py-2 mx-4 bg-slate-500 text-gray-100 text-xl font-bold"
-                >
-                    +
-                </button>   
-                <span>
-                {{ $count }}
-                </span>
+        <div class="flex items-center border border-4 border-gray-900 rounded-full px-16 py-12 text-[96px]">
+            <span>
+            {{ $count }}
+            </span>
+            <button wire:click="increment" class="p-0 ml-4 text-[48px] font-bold">+
+            </button>
         </div>
         HTML;
     }
