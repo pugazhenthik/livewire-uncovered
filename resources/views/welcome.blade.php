@@ -14,8 +14,15 @@
     </head>
     <body class="mx-auto">
         <div class="flex items-center items-center justify-center mt-10">
-            <livewire:counter />
+            {!! livewire(App\Http\Livewire\Counter::class) !!}
         </div>
-        @livewireScripts
     </body>
 </html>
+<?php 
+function livewire($class) { 
+    $component = new $class; return Blade::render($component->render(),
+getProperties($component)); } function getProperties($class) { $properties = [];
+$reflectedProperties = (new
+ReflectionClass($class))->getProperties(ReflectionProperty::IS_PUBLIC);
+foreach($reflectedProperties as $property) { $properties[$property->getName()] =
+$property->getValue($class); } return $properties; } ?>

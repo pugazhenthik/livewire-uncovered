@@ -20,7 +20,7 @@ class Counter extends Component
             <span>
             {{ $count }}
             </span>
-            <button wire:click="increment" class="p-0 ml-4 text-[48px] font-bold">+
+            <button wire:click="increment" class="p-0 ml-4 text-[48px] font-bold"> +
             </button>
         </div>
         HTML;
