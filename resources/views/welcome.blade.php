@@ -8,6 +8,17 @@
     </head>
     <body class="mx-auto">
         <div class="flex items-center items-center justify-center mt-10">
+            <!-- Alpine Plugins -->
+            <script
+                defer
+                src="https://unpkg.com/@alpinejs/morph@3.x.x/dist/cdn.min.js"
+            ></script>
+             
+            <!-- Alpine Core -->
+            <script
+                defer
+                src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+            ></script>
             @livewire(App\Http\Livewire\Counter::class)
         </div>
         <script>
@@ -38,7 +49,7 @@
                     .then((response) => {
                         let { snapshot, html } = response;
                         el.__livewire = snapshot;
-                        el.innerHTML = html;
+                        Alpine.morph(el, html);
                     });
             }
         </script>

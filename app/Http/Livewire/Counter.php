@@ -22,6 +22,7 @@ class Counter
             </span>
             <button wire:click="increment" class="p-0 ml-4 text-[48px] font-bold"> +
             </button>
+            <input class="w-[100px] ml-4 text-lg h-10 bg-blue-100" type="text" />
         </div>
         HTML;
     }
