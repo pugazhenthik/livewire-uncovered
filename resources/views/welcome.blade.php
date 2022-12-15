@@ -19,8 +19,8 @@
                 defer
                 src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
             ></script>
-            @livewire(App\Http\Livewire\Counter::class)
+            @livewire(App\Http\Livewire\Todo::class)
         </div>
-        <script src="livewire.js"></script>
+        <script src="\livewire.js"></script>
     </body>
 </html>
