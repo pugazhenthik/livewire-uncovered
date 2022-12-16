@@ -7,6 +7,7 @@ document.querySelectorAll("[wire\\:snapshot]").forEach((el) => {
 function initLivewire(el) {
     el.addEventListener("click", (e) => {
         if (!e.target.hasAttribute("wire:click")) return;
+
         let method = e.target.getAttribute("wire:click");
 
         sendRequest(el, { callMethod: method });
@@ -16,12 +17,14 @@ function initLivewire(el) {
 function initWireModel(el) {
     updateWireModelInputs(el);
 
-    // let data = el.__livewire.data;
+    let data = el.__livewire.data;
 
     el.addEventListener("input", (e) => {
         if (!e.target.hasAttribute("wire:model")) return;
+
         let property = e.target.getAttribute("wire:model");
         let value = e.target.value;
+
         sendRequest(el, { updateProperty: [property, value] });
     });
 }
@@ -48,7 +51,7 @@ function sendRequest(el, addToPayload) {
         .then((response) => {
             let { snapshot, html } = response;
             el.__livewire = snapshot;
-            Alpine.morph(el, html);
+            Alpine.morph(el.firstElementChild, html);
             updateWireModelInputs(el);
         });
 }

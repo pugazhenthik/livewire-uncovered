@@ -6,11 +6,16 @@ use Livewire\Component;
 
 class Todo extends Component
 {
-    public $todos = [
-        'Todo 1',
-        'Todo 2'
-    ];
-    public $draft = 'Todo 3';
+    public $todos = [];
+    public $draft = '';
+
+    public function mount()
+    {
+        $this->todos = [
+            'Learning livewire',
+            'Learning laravel'
+        ];
+    }
 
     public function addTodo()
     {
@@ -31,5 +36,10 @@ class Todo extends Component
                 </ul>
             </div>
         HTML;
+    }
+
+    public function updateDraft()
+    {
+        $this->draft = strtoupper($this->draft);
     }
 }
