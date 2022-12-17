@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use Illuminate\Support\Collection;
 use ReflectionClass;
 use ReflectionProperty;
@@ -30,6 +31,8 @@ class Livewire
 
     public function fromSnapshot($snapshot)
     {
+        $this->verifyToken($snapshot);
+
         $class = $snapshot['class'];
         $data = $snapshot['data'];
         $meta = $snapshot['meta'];
@@ -41,6 +44,17 @@ class Livewire
         $this->setProperties($component, $properties);
 
         return $component;
+    }
+
+    public function verifyToken($snapshot)
+    {
+        $token = $snapshot['_token'];
+
+        unset($snapshot['_token']);
+
+        if ($this->generateToken($snapshot) !== $token) {
+            throw new Exception('Hey stop hacking me!');
+        }
     }
 
     public function hydrateProperties($data, $meta)
@@ -69,10 +83,17 @@ class Livewire
         $snapshot = [
             'class' => get_class($component),
             'data' => $data,
-            'meta' => $meta
+            'meta' => $meta,
         ];
 
+        $snapshot['_token'] = $this->generateToken($snapshot);
+
         return [$snapshot, $html];
+    }
+
+    public function generateToken($snapshot)
+    {
+        return md5(json_encode($snapshot));
     }
 
     public function dehydrateProperties($properties)

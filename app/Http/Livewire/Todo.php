@@ -7,7 +7,7 @@ use Livewire\Component;
 class Todo extends Component
 {
     public $todos;
-    public $draft = '';
+    public $draft;
 
     public function mount()
     {
