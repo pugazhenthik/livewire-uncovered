@@ -17,8 +17,6 @@ function initLivewire(el) {
 function initWireModel(el) {
     updateWireModelInputs(el);
 
-    let data = el.__livewire.data;
-
     el.addEventListener("input", (e) => {
         if (!e.target.hasAttribute("wire:model")) return;
 

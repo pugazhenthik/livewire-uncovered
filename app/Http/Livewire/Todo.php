@@ -6,20 +6,20 @@ use Livewire\Component;
 
 class Todo extends Component
 {
-    public $todos = [];
+    public $todos;
     public $draft = '';
 
     public function mount()
     {
-        $this->todos = [
+        $this->todos = collect([
             'Learning livewire',
             'Learning laravel'
-        ];
+        ]);
     }
 
     public function addTodo()
     {
-        $this->todos[] = $this->draft;
+        $this->todos->push($this->draft);
         $this->draft = '';
     }
 
